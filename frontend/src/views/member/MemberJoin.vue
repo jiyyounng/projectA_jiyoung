@@ -64,6 +64,7 @@
                     <td><input type="text" name="addr" id="id" v-model="join.addr"></td>
                 </tr>
             </table>
+            <button v-on:click="$router.push('/')">돌아가기</button>
             <button class="joinButton" @click="joinMember">회원가입</button>
         </form>
     </div>
@@ -90,13 +91,14 @@ export default{
             axios
                 .get("/member/check", {params: { id:this.join.id}})
                 .then((result) => {
-                   // this.join.id = result.data;
-                    if (result.data == true ) {
+
+                    if (result.data === true ) {
                         alert("이미 사용중인 아이디 입니다.");
-                        document.getElementById('id').value = '';
+                       // document.getElementById('id').value = '';
+                        this.join.id='';
                     }else {
                         alert("사용 가능한 아이디 입니다.");
-                        document.getElementById('id').value= (this.join.id);
+                       // document.getElementById('id').value= (this.join.id);
                     }
 
                 })

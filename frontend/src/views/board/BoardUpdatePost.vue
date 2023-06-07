@@ -1,6 +1,6 @@
 <template>
-    <form class="" v-on:submit.prevent>
-        <table id="formBox">
+    <form class="" v-on:submit.prevent >
+        <table id="formBox" >
             <tr>
                 <td>제목</td>
                 <td><input type="text" name="title" v-model="update.title" ></td>

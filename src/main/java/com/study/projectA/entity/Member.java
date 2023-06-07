@@ -1,18 +1,18 @@
 package com.study.projectA.entity;
 
+import com.study.projectA.web.dto.MemberSaveRequestDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Getter
+@Setter
 @Data
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Member {
     @Id
     @NotBlank(message = "아이디를 입력해주세요.")
@@ -36,8 +36,7 @@ public class Member {
     @Email(message = "올바른 이메일 주소를 입력해주세요.")
     private String email;
 
-    @Builder
-    public Member(String id, String password, String name, String birth, String gender, String phone, String addr, String email) {
+    public Member(MemberSaveRequestDto requestDto) {
         this.id = id;
         this.password = password;
         this.name = name;

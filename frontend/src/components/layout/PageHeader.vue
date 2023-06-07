@@ -9,7 +9,7 @@
            <button @click="goLogout">로그아웃</button>
        </div>
        <header>
-               <div id="nav">
+           <div id="nav">
                    <router-link to="/">Home</router-link> |
                    <router-link to="/about">About</router-link> |
                    <router-link to="/board/list">Board</router-link>

@@ -2,7 +2,9 @@ package com.study.projectA.web.dto;
 
 import com.study.projectA.entity.Member;
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 public class MemberResponseDto {
     private String id;

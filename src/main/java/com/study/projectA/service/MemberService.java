@@ -2,37 +2,30 @@ package com.study.projectA.service;
 
 import com.study.projectA.entity.Member;
 import com.study.projectA.entity.MemberRepository;
+import com.study.projectA.web.dto.MemberResponseDto;
 import com.study.projectA.web.dto.MemberSaveRequestDto;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Member login(MemberSaveRequestDto requestDto) {
-
-        // dto -> entity
-        Member entity = requestDto.toEntity();
-
-        // 회원 엔티티 객체 생성 및 조회
-        Member member = memberRepository.findById(entity.getId()).orElseThrow();
-
-        return member;
+    @Transactional
+    public MemberResponseDto login(MemberSaveRequestDto requestDto) {
+        Member entity = memberRepository.findById(requestDto.getId()).orElseThrow();
+        return new MemberResponseDto(entity);
     }
 
     @Transactional
-    public Member save(MemberSaveRequestDto requestDto) {
-        return memberRepository.save(requestDto.toEntity());
+    public MemberResponseDto save(MemberSaveRequestDto requestDto) {
+        Member entity = new Member(requestDto);
+        memberRepository.save(entity);
+        return new MemberResponseDto(entity);
     }
-
 
     @Transactional
     public boolean idCheck(String id) {

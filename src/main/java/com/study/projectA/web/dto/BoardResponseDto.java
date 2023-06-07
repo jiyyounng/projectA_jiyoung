@@ -2,10 +2,11 @@ package com.study.projectA.web.dto;
 
 import com.study.projectA.entity.Board;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
+@Setter
 @Getter
 public class BoardResponseDto {
     private Long no;

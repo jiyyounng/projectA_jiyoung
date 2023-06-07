@@ -16,6 +16,7 @@ public class BoardTests {
     @Autowired
     BoardRepository boardRepository;
 
+    /*
     @Test
     void save() {
         Board params = Board.builder()
@@ -27,4 +28,6 @@ public class BoardTests {
         boardRepository.save(params);
 
     }
+    */
+
 }

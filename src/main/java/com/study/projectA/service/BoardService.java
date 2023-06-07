@@ -5,27 +5,22 @@ import com.study.projectA.entity.BoardRepository;
 import com.study.projectA.web.dto.BoardResponseDto;
 import com.study.projectA.web.dto.BoardSaveRequestDto;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 
 @Service
+@AllArgsConstructor
 public class BoardService {
 
-    @Autowired
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
 
     @Transactional
     public List<Board> boardList() {
         return boardRepository.findAll();
     }
-
-    @Transactional
-    public Long save(BoardSaveRequestDto requestDto) {return boardRepository.save(requestDto.toEntity()).getNo();}
 
     @Transactional
     public BoardResponseDto boardRead(Long no) {
@@ -34,15 +29,21 @@ public class BoardService {
     }
 
     @Transactional
-    public Long boardUpdate(Long no, BoardSaveRequestDto params) {
+    public BoardResponseDto boardSave(BoardSaveRequestDto requestDto) {
+        Board entity = new Board(requestDto);
+        boardRepository.save(entity);
+        return new BoardResponseDto(entity);
+    }
+
+    @Transactional
+    public Long boardUpdate(Long no, BoardSaveRequestDto requestDto) {
         Board entity = boardRepository.findById(no).orElseThrow();
-        entity.update(params.getTitle(), params.getContent(), new Date());
+        entity.update(requestDto);
         return no;
     }
 
     @Transactional
     public void boardDelete(Long no) {
-        //Board entity = boardRepository.findById(no).orElseThrow();
          boardRepository.deleteById(no);
     }
 }
