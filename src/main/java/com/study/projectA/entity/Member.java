@@ -15,6 +15,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotBlank(message = "아이디를 입력해주세요.")
     @Size(min = 2, max = 10, message = "아이디는 2자 이상 10자 이하로 입력해주세요.")
     private String id;
@@ -37,13 +38,18 @@ public class Member {
     private String email;
 
     public Member(MemberSaveRequestDto requestDto) {
+        this.id = requestDto.getId();
+        this.password = requestDto.getPassword();
+        this.name = requestDto.getName();
+        this.birth = requestDto.getBirth();
+        this.gender = requestDto.getGender();
+        this.phone = requestDto.getPhone();
+        this.addr = requestDto.getAddr();
+        this.email = requestDto.getEmail();
+    }
+
+    public Member(String id, String password) {
         this.id = id;
         this.password = password;
-        this.name = name;
-        this.birth = birth;
-        this.gender = gender;
-        this.phone = phone;
-        this.addr = addr;
-        this.email = email;
     }
 }

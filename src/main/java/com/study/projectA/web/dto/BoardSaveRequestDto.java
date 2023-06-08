@@ -16,5 +16,9 @@ public class BoardSaveRequestDto {
     private String content;
     private Date date;
 
-
+    public BoardSaveRequestDto(String title, String content, Date date) {
+        this.title = title;
+        this.content = content;
+        this.date = date;
+    }
 }

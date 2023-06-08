@@ -15,21 +15,18 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public MemberResponseDto login(MemberSaveRequestDto requestDto) {
-        Member entity = memberRepository.findById(requestDto.getId()).orElseThrow();
-        return new MemberResponseDto(entity);
-    }
-
-    @Transactional
     public MemberResponseDto save(MemberSaveRequestDto requestDto) {
         Member entity = new Member(requestDto);
         memberRepository.save(entity);
         return new MemberResponseDto(entity);
     }
-
     @Transactional
     public boolean idCheck(String id) {
         return memberRepository.existsById(id);
     }
 
+    public MemberResponseDto login(MemberSaveRequestDto requestDto) {
+        Member entity = memberRepository.findById(requestDto.getId());
+        return new MemberResponseDto(entity);
+    }
 }

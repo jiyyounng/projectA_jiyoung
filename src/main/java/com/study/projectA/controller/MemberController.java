@@ -18,7 +18,7 @@ public class MemberController {
     }
 
     @PostMapping("/member/loginMember")
-    public MemberResponseDto memberLogin(@RequestBody MemberSaveRequestDto requestDto) {
+    public  MemberResponseDto memberLogin(@RequestBody MemberSaveRequestDto requestDto) {
         return memberService.login(requestDto);
     }
 
@@ -26,4 +26,11 @@ public class MemberController {
     public boolean memberIdCheck(@RequestParam("id") String id) {
         return memberService.idCheck(id);
     }
+
+
+
+
 }
+
+
+

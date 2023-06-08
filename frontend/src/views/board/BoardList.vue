@@ -7,7 +7,7 @@
                 <th>Date</th>
             </thead>
             <tbody>
-            <tr v-for="(list,index) in boardList" :key="list.no">
+            <tr v-for="(list,index) in boardList" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td v-on:click="$router.push('/board/read?no=' + list.no)"> {{ list.title }}</td>
                 <td>{{ list.date }}</td>

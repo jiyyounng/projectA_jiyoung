@@ -1,39 +1,53 @@
 package com.study.projectA.test;
 
 import com.study.projectA.entity.Member;
+
 import com.study.projectA.entity.MemberRepository;
-import com.study.projectA.web.dto.MemberResponseDto;
+import com.study.projectA.service.MemberService;
 import com.study.projectA.web.dto.MemberSaveRequestDto;
-import org.antlr.v4.runtime.misc.NotNull;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+@ExtendWith(SpringExtension.class)
 public class MemberTests {
 
-    @Autowired
+    @InjectMocks
+    MemberService memberService;
+
+    @Mock
     MemberRepository memberRepository;
 
-
-    // 회원가입 insert 테스트
-    /*
     @Test
-    void save() {
-        Member params = Member.builder()
-                .id("abc1")
-                .password("1234")
-                .name("abc")
-                .birth("1999-08-10")
-                .gender("여자")
-                .phone("010-1234-5678")
-                .addr("경기도 과천시")
-                .email("abc1@gmail.com")
-                .build();
-        memberRepository.save(params);
+    @DisplayName("회원가입 테스트")
+    void join() {
+        MemberSaveRequestDto requestDto = new MemberSaveRequestDto("test1", "test1", "test1", "19990810", "여", "01011112222", "경기도", "test1@naver.com");
+        Member member = new Member(requestDto);
+        memberService.save(requestDto);
+        memberRepository.save(member);
 
+        assertEquals("test1@naver.com", member.getEmail());
     }
-    */
+
+    @Test
+    @DisplayName("회원 로그인")
+    void login(){
+
+        MemberSaveRequestDto member = new MemberSaveRequestDto("aa","aa");
+        String id = "aa";
+        memberRepository.findById(id);
+
+        assertEquals("aa", member.getId());
+    }
+
+
 
 
 }
