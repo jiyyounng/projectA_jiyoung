@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 @Service
@@ -24,7 +26,7 @@ public class BoardService {
 
     @Transactional
     public BoardResponseDto boardRead(Long no) {
-        Board entity = boardRepository.findById(no).orElseThrow();
+        Board entity = boardRepository.findById(no).orElseThrow(()-> new NoSuchElementException("없어요"));;
         return new BoardResponseDto(entity);
     }
 
@@ -37,7 +39,7 @@ public class BoardService {
 
     @Transactional
     public Long boardUpdate(Long no, BoardSaveRequestDto requestDto) {
-        Board entity = boardRepository.findById(no).orElseThrow();
+        Board entity = boardRepository.findById(no).orElseThrow(()-> new NoSuchElementException("없어요"));
         entity.update(requestDto);
         return no;
     }

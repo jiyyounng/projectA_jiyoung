@@ -4,7 +4,6 @@ import com.study.projectA.web.dto.MemberSaveRequestDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -16,6 +15,8 @@ import lombok.*;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idx;
+
     @NotBlank(message = "아이디를 입력해주세요.")
     @Size(min = 2, max = 10, message = "아이디는 2자 이상 10자 이하로 입력해주세요.")
     private String id;
@@ -29,7 +30,6 @@ public class Member {
     private String gender;
 
     @NotBlank(message = "휴대폰 번호를 입력해주세요.")
-    @Pattern(regexp = "(01[016789])(\\d{3,4})(\\d{4})", message = "올바른 휴대폰 번호를 입력해주세요.")
     private String phone;
     private String addr;
 
@@ -48,8 +48,4 @@ public class Member {
         this.email = requestDto.getEmail();
     }
 
-    public Member(String id, String password) {
-        this.id = id;
-        this.password = password;
-    }
 }

@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Data
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Board {

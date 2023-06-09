@@ -4,12 +4,12 @@ import com.study.projectA.entity.Board;
 import com.study.projectA.service.BoardService;
 import com.study.projectA.web.dto.BoardResponseDto;
 import com.study.projectA.web.dto.BoardSaveRequestDto;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 public class BoardController {
 

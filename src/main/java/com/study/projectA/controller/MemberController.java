@@ -4,6 +4,7 @@ import com.study.projectA.service.MemberService;
 import com.study.projectA.web.dto.MemberResponseDto;
 import com.study.projectA.web.dto.MemberSaveRequestDto;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
@@ -13,7 +14,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/member/joinMember")
-    public MemberResponseDto memberJoin(@RequestBody MemberSaveRequestDto requestDto){
+    public MemberResponseDto memberJoin(@Validated @RequestBody MemberSaveRequestDto requestDto){
         return memberService.save(requestDto);
     }
 

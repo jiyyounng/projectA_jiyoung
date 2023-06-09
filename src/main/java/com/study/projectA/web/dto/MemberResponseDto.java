@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MemberResponseDto {
+    private Long idx;
     private String id;
     private String password;
     private String name;
@@ -17,6 +18,7 @@ public class MemberResponseDto {
     private String email;
 
     public MemberResponseDto(Member entity) {
+        this.idx = entity.getIdx();
         this.id = entity.getId();
         this.password = entity.getPassword();
         this.name = entity.getName();

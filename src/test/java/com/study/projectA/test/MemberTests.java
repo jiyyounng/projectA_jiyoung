@@ -19,9 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 public class MemberTests {
 
-    @InjectMocks
-    MemberService memberService;
-
     @Mock
     MemberRepository memberRepository;
 
@@ -30,7 +27,6 @@ public class MemberTests {
     void join() {
         MemberSaveRequestDto requestDto = new MemberSaveRequestDto("test1", "test1", "test1", "19990810", "여", "01011112222", "경기도", "test1@naver.com");
         Member member = new Member(requestDto);
-        memberService.save(requestDto);
         memberRepository.save(member);
 
         assertEquals("test1@naver.com", member.getEmail());
@@ -39,7 +35,6 @@ public class MemberTests {
     @Test
     @DisplayName("회원 로그인")
     void login(){
-
         MemberSaveRequestDto member = new MemberSaveRequestDto("aa","aa");
         String id = "aa";
         memberRepository.findById(id);
